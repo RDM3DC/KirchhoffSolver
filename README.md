@@ -4,6 +4,15 @@
 
 We model a resistive network with **adaptive, time-evolving conductances** governed by the **Adaptive Resistance Principle (ARP)**. This system generalizes Ohm’s Law and Kirchhoff’s Laws into a differentiable and stable dynamical framework.
 
+## Installation
+
+To install the solver directly from the repository, clone the project and run:
+
+```bash
+python -m pip install .
+```
+
+
 ### 1. Ohm’s Law (Generalized)
 
 For each branch $(i,j)$ in the circuit:
@@ -124,4 +133,27 @@ $$
 * Fully differentiable (JAX)
 * Supports exotic devices: memristors, diodes, superconductors
 * Guarantees convergence through Lyapunov energy
+
+## Quickstart Example
+
+Run `python examples/quickstart.py` to simulate a small three-node network.
+The script shows how to construct a network, run the solver and print
+final conductances and node voltages.
+
+## Documentation
+
+API documentation can be generated with [Sphinx](https://www.sphinx-doc.org/):
+
+```bash
+cd docs && sphinx-build -b html . _build
+```
+
+The solver and helper functions contain comprehensive docstrings that
+feed directly into the documentation.
+
+## Performance Notes
+
+The solver uses an implicit integration scheme which is stable for large
+time steps. For networks with millions of branches, performance scales
+roughly linearly with the number of edges thanks to the sparse updates.
 
